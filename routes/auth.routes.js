@@ -10,7 +10,7 @@ router.post("/signup", async (req, res) => {
   // Grab the necessary information from the body.
   const { firstName, lastName, email, password } = req.body;
   try {
-    // Apply 
+    // Apply the bcrypt hash onto the password the user used to safely store it in the database
     const passwordHash = await bcrypt.hash(password, 12);
     const user = await User.create({
       firstName,
@@ -60,7 +60,5 @@ router.post("/login", async (req, res) => {
     res.status(500).json(error);
   }
 });
-
-// This is a test to see if the branch creation worked
 
 module.exports = router;
