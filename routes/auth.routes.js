@@ -4,6 +4,7 @@ const jwt = require("jsonwebtoken");
 const { body } = require("express-validator");
 const User = require("../models/User.model");
 const validate = require("../middlewares/validate.middleware");
+const { authenticate } = require("../middlewares/jwt.middleware");
 
 const router = express.Router();
 
@@ -64,5 +65,11 @@ router.post(
     }
   }
 );
+
+router.get("/verify", authenticate, (req, res) => {
+  res.status(200).json({
+    user: req.jwtPayload.user,
+  });
+});
 
 module.exports = router;
