@@ -26,7 +26,7 @@ app.post("/test", authenticate, (req, res) => {
 });
 
 // name of the file is "myFile" you can change it to whatever you want
-app.post('/upload', upload.single('myFile'), (req, res) => {
+app.post('upload', upload.single('myFile'), (req, res) => {
   res.json(req.file)
 })
 
